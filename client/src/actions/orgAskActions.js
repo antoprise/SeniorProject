@@ -12,7 +12,7 @@ import {
 export const getAllOrgAsk = () => async dispatch => {
     try {
         dispatch({type: ORG_ASK_REQUEST});
-        const res = await axios.get('https://ask-project.herokuapp.com//api/ask')
+        const res = await axios.get('https://ask-project.herokuapp.com/api/ask')
         dispatch({
             type: GET_ORG_ASKLIST,
             payload: res.data
@@ -29,7 +29,7 @@ export const getAllOrgAsk = () => async dispatch => {
 export const getOrgAskById = askId => async dispatch => {
     try {
         dispatch({type: ORG_ASK_REQUEST});
-        const res = await axios.get(`https://ask-project.herokuapp.com//api/ask/${askId}`)
+        const res = await axios.get(`https://ask-project.herokuapp.com/api/ask/${askId}`)
 
         dispatch({
             type: GET_ORG_ASK,
@@ -47,7 +47,7 @@ export const getOrgAskById = askId => async dispatch => {
 export const getOrgAskByRoomId = roomId => async dispatch => {
     try {
         dispatch({type: ORG_ASK_REQUEST});
-        const res = await axios.get(`https://ask-project.herokuapp.com//api/ask/room/${roomId}`)
+        const res = await axios.get(`https://ask-project.herokuapp.com/api/ask/room/${roomId}`)
     
         dispatch({
             type: GET_ORG_ASKLIST,

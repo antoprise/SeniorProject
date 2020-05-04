@@ -11,7 +11,7 @@ export const loadUser = () => async dispatch => {
     try {
       dispatch({type: AUTH_REQUEST});
       
-      const res = await axios.get('https://ask-project.herokuapp.com//api/auth/current_user');
+      const res = await axios.get('https://ask-project.herokuapp.com/api/auth/current_user');
       
       console.log(res.data)
       dispatch({
