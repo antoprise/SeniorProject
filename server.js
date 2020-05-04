@@ -3,6 +3,9 @@ const connectDB = require('./config/db');
 const app = express();
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const  cors = require('cors')
+
+app.use(cors())
 
 // Connect Database
 connectDB();

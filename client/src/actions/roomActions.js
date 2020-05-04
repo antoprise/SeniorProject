@@ -14,7 +14,7 @@ import {
 export const getAllRoom = () => async (dispatch) => {
   try {
     dispatch({type: ROOM_REQUEST});
-    const res = await axios.get('/api/room');
+    const res = await axios.get('https://ask-project.herokuapp.com//api/room');
     dispatch({
       type: GET_ROOMLIST,
       payload: res.data
@@ -31,7 +31,7 @@ export const getAllRoom = () => async (dispatch) => {
 export const getRoomById = roomId => async (dispatch) => {
   try {
     dispatch({type: ROOM_REQUEST});
-    const res = await axios.get(`/api/room/${roomId}`);
+    const res = await axios.get(`https://ask-project.herokuapp.com//api/room/${roomId}`);
     dispatch({
       type: GET_ROOM,
       payload: res.data
@@ -48,7 +48,7 @@ export const getRoomById = roomId => async (dispatch) => {
 export const getRoomByUserId = userId => async (dispatch) => {
   try {
     dispatch({type: ROOM_REQUEST});
-    const res = await axios.get(`/api/room/user/${userId}`);
+    const res = await axios.get(`https://ask-project.herokuapp.com//api/room/user/${userId}`);
     console.log(res.data)
     dispatch({
       type: GET_ROOMLIST,
@@ -66,7 +66,7 @@ export const getRoomByUserId = userId => async (dispatch) => {
 export const joinRoom = (roomId,userId)=> async (dispatch) => {
   try {
     dispatch({type: ROOM_REQUEST});
-    const res = await axios.post(`/api/room/join/${roomId}`,userId);
+    const res = await axios.post(`https://ask-project.herokuapp.com//api/room/join/${roomId}`,userId);
 
     dispatch({
       type: JOIN_ROOM,
@@ -84,7 +84,7 @@ export const joinRoom = (roomId,userId)=> async (dispatch) => {
 export const leaveRoom = (roomId,userId) => async (dispatch) => {
   try {
     dispatch({type: ROOM_REQUEST});
-    await axios.delete(`/api/room/leave/${roomId}`,userId);
+    await axios.delete(`https://ask-project.herokuapp.com//api/room/leave/${roomId}`,userId);
 
     dispatch({
       type: LEAVE_ROOM,

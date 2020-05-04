@@ -13,7 +13,7 @@ import {
 export const getAllAsk = () => async dispatch => {
     try {
         dispatch({type: ASK_REQUEST});
-        const res = await axios.get('/api/ask')
+        const res = await axios.get('https://ask-project.herokuapp.com//api/ask')
         dispatch({
             type: GET_ASKLIST,
             payload: res.data
@@ -30,7 +30,7 @@ export const getAllAsk = () => async dispatch => {
 export const getAskById = askId => async dispatch => {
     try {
         dispatch({type: ASK_REQUEST});
-        const res = await axios.get(`/api/ask/${askId}`)
+        const res = await axios.get(`https://ask-project.herokuapp.com//api/ask/${askId}`)
 
         dispatch({
             type: GET_ASK,
@@ -48,7 +48,7 @@ export const getAskById = askId => async dispatch => {
 export const getAskByRoomIdUserId = (roomId,userId) => async dispatch => {
     try {
         dispatch({type: ASK_REQUEST});
-        const res = await axios.get(`/api/ask/room/${roomId}/${userId}`)
+        const res = await axios.get(`https://ask-project.herokuapp.com//api/ask/room/${roomId}/${userId}`)
     
         dispatch({
             type: GET_ASKLIST,
@@ -66,7 +66,7 @@ export const getAskByRoomIdUserId = (roomId,userId) => async dispatch => {
 export const addAsk = formData => async dispatch => {
     try {
         dispatch({type: ASK_REQUEST});
-        const res = await axios.post('/api/ask', formData);
+        const res = await axios.post('https://ask-project.herokuapp.com//api/ask', formData);
 
         dispatch({
           type: ADD_ASK,

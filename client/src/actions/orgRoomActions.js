@@ -32,7 +32,7 @@ export const getAllOrgRoom = () => async (dispatch) => {
 export const getOrgRoomById = roomId => async (dispatch) => {
   try {
     dispatch({type: ORG_ROOM_REQUEST});
-    const res = await axios.get(`/api/room/${roomId}`);
+    const res = await axios.get(`https://ask-project.herokuapp.com//api/room/${roomId}`);
 
     dispatch({
       type: GET_ORG_ROOM,
@@ -50,7 +50,7 @@ export const getOrgRoomById = roomId => async (dispatch) => {
 export const getRoomByOwnerId = userId => async (dispatch) => {
   try {
     dispatch({type: ORG_ROOM_REQUEST});
-    const res = await axios.get(`/api/room/owner/${userId}`);
+    const res = await axios.get(`https://ask-project.herokuapp.com//api/room/owner/${userId}`);
     console.log(res.data)
     dispatch({
       type: GET_ORG_ROOMLIST,
@@ -68,7 +68,7 @@ export const getRoomByOwnerId = userId => async (dispatch) => {
 export const createRoom = formData => async (dispatch) => {
   try {
     dispatch({type: ORG_ROOM_REQUEST});
-    const res = await axios.post('/api/room', formData);
+    const res = await axios.post('https://ask-project.herokuapp.com//api/room', formData);
 
     dispatch({
       type: CREATE_ROOM,
@@ -86,7 +86,7 @@ export const createRoom = formData => async (dispatch) => {
 export const deleteRoom = roomId => async (dispatch) => {
   try {
     dispatch({type: ORG_ROOM_REQUEST});
-    await axios.delete(`/api/room/${roomId}`);
+    await axios.delete(`https://ask-project.herokuapp.com//api/room/${roomId}`);
 
     dispatch({
       type: DELETE_ROOM,
@@ -104,7 +104,7 @@ export const deleteRoom = roomId => async (dispatch) => {
 export const editRoomName = (roomId, formData) => async (dispatch) => {
   try {
     dispatch({type: ORG_ROOM_REQUEST});
-    const res = await axios.put(`/api/room/editname/${roomId}`, formData);
+    const res = await axios.put(`https://ask-project.herokuapp.com//api/room/editname/${roomId}`, formData);
 
     dispatch({
       type: EDIT_ROOM,
