@@ -23,7 +23,8 @@ const Login = (props) => {
                         <img src={logo} alt='Interask' className='img-fluid '></img>
                     </Row>
                     <Row className='justify-content-center align-items-center button'>
-                        <a href={`${apiUrl}/api/auth/google`}><img src={googlelogin} alt='Interask' className='img-fluid' style={{width:'340px'}} /></a>
+                        {/* <a href={`${apiUrl}/api/auth/google`}><img src={googlelogin} alt='Interask' className='img-fluid' style={{width:'340px'}} /></a> */}
+                        <a href={`https://ask-project.herokuapp.com/api/auth/google`}><img src={googlelogin} alt='Interask' className='img-fluid' style={{width:'340px'}} /></a>
                     </Row>
 
                     <Row className='justify-content-center align-items-end footer'>
