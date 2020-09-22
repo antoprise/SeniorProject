@@ -1,5 +1,4 @@
 import {
-  ROOM_REQUEST,
   GET_ROOMLIST,
   GET_ROOM,
   JOIN_ROOM,
@@ -13,58 +12,53 @@ const initialState = {
   roomList: [],
   room: null,
   error: {},
-  loading: true 
+  roomLoading: true 
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case ROOM_REQUEST:
-      return {
-        ...state,
-        loading: true   
-      } ;
     case GET_ROOMLIST:
       return {
         ...state,
         roomList: payload,
-        loading: false    
+        roomLoading: false    
       } ;
     case GET_ROOM:
       return {
         ...state,
         room: payload,
-        loading: false    
+        roomLoading: false    
       } ; 
     case JOIN_ROOM:
         return {
           ...state,
-          roomList: [...state,payload],
-          loading: false    
+          roomList: [...state.roomList,payload],
+          roomLoading: false    
     } 
     case LEAVE_ROOM:
         return {
           ...state,
           roomList: state.roomList.filter(room => room._id !== payload),
-          loading: false    
+          roomLoading: false    
     }   
     case ROOM_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        roomLoading: false
       };
     case ROOM_UNLOADED:
        return {
         ...state,
         room: null,
-        loading: true 
+        roomLoading: true 
       };
     case ROOMLIST_UNLOADED:
       return {
         ...state,
         roomList: [],
-        loading: true 
+        roomLoading: true 
       };     
     default:
       return state;

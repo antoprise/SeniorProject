@@ -4,21 +4,24 @@ import { connect } from "react-redux";
 import { Row, Col } from "reactstrap";
 import sent from "../../assets/sent1.svg";
 
-const AskForm = ({ room, addAsk }) => {
+const AskForm = (props) => {
   const [text, setText] = useState("");
   const [anonymous, setAnonymous] = useState(false);
-  const userId = "5e85403922192a21e87fbbaa";
+  const{
+    room, 
+    addAsk
+  } = props
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const roomId = room._id;
-    addAsk({ userId, roomId, text, anonymous });
+    addAsk({ roomId, text, anonymous });
     setText("");
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <Row className="mt-2">
           <Col xs="12" className="p-2">
             <input
@@ -34,7 +37,7 @@ const AskForm = ({ room, addAsk }) => {
         </Row>
         <Row>
           <Col xs="6" className="text-left mt-2">
-            <div className="custom-control custom-switch text-left ">
+            <div className="custom-control custom-switch text-left  ">
               <input
                 type="checkbox"
                 className="custom-control-input"
@@ -42,6 +45,7 @@ const AskForm = ({ room, addAsk }) => {
                 value={anonymous}
                 onChange={() => setAnonymous(!anonymous)}
               />
+             
               <label
                 className="custom-control-label anonymous"
                 htmlFor="anonymousSwitch"
@@ -51,7 +55,7 @@ const AskForm = ({ room, addAsk }) => {
             </div>
           </Col>
           <Col xs="6" className="text-right mt-2">
-            <button type="submit" className="btnAdvance">
+            <button type="submit" className="btnAdvance" disabled={!room.askStatus}>
               <img src={sent}></img>
             </button>
           </Col>

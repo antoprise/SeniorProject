@@ -1,5 +1,4 @@
 import {
-  ASK_REQUEST,
   GET_ASKLIST,
   GET_ASK,
   ADD_ASK,
@@ -12,52 +11,47 @@ const initialState = {
   askList: [],
   ask: null,
   error: {},
-  loading: true
+  askLoading: true
 };
 
 export default function(state = initialState, action) {
 const { type, payload } = action;
 switch (type) {
-  case ASK_REQUEST:
-    return {
-      ...state,
-      loading: true   
-    } ;
   case GET_ASKLIST:
     return {
       ...state,
       askList: payload,
-      loading: false   
+      askLoading: false   
     } ;
   case GET_ASK:
       return {
         ...state,
         ask: payload,
-        loading: false       
+        askLoading: false       
       } ;      
   case ADD_ASK:
     return {
       ...state,
       askList: [...state.askList,payload],
-      loading: false 
+      askLoading: false 
     };
   case ASK_ERROR:
     return {
       ...state,
       error: payload,
-      loading: false 
+      askLoading: false 
     };
   case ASK_UNLOADED:
     return {
       ...state,
       ask: null,
-      loading: true 
+      askLoading: true 
     };
   case ASKLIST_UNLOADED:
     return {
       ...state,
       askList: [],
-      loading: true 
+      askLoading: true 
     }; 
   default:
     return state;

@@ -1,61 +1,84 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { getRoomByUserId, roomListUnload } from "../../actions/roomActions";
+import { getRoomList, roomListUnload } from "../../actions/roomActions";
+import leave_room from "../../assets/leave.svg";
 import RoomList from "./RoomList";
-import { Container } from "reactstrap";
+import { Container, Button } from "reactstrap";
+import Loading from "../Loading/Loading";
 const Room = (props) => {
-  //mockup user
-  const user = {
-    _id: "5e85403922192a21e87fbbaa",
-    email: "ballpwd5@gmail.com",
-    userName: "ballpwd5",
-  };
-
+  const [edit, setEdit] = useState(false);
+  const leave = () => setEdit(!edit);
   const {
-    getRoomByUserId,
+    getRoomList,
     roomListUnload,
-    room: { roomList, loading },
+    room: { roomList, roomLoading },
+    auth: { user },
   } = props;
 
   useEffect(() => {
-    getRoomByUserId(user._id);
+    getRoomList();
+
     return () => {
       roomListUnload();
     };
-  }, [getRoomByUserId, roomListUnload, user._id]);
+  }, [getRoomList, roomListUnload]);
 
   console.log(roomList);
 
-  return loading ? (
-    <h1>Loading</h1>
+  return roomLoading ? (
+    <Loading></Loading>
   ) : (
     <Fragment>
-      <div className="room-bg">
-        <Container fluid className="head-room">
+      <div className="fullscreen bg">
+        <Container fluid >
           <div className="p-4">
-            <h1 className="room-h1">Hi "{user.userName}"</h1>
-            {/* <p className="text-danger text-center">
-            {" "}
-            Mockup Room for User ballpwd5{" "}
-          </p> */}
+            <h1 className="room-h1 text-break">Hi "{user.userName}"</h1>
             <br /> <h3 className="room-h3">SELECT ROOM</h3>
           </div>
         </Container>
         <Container fluid className="text-center">
-          <div className="p-5">
-            <br />
-            <br />
-            <br />
-            <br />
-          </div>
-          {<RoomList roomList={roomList} />}
+          {<RoomList roomList={roomList} edit={edit} />}
+          <div className="p-4"></div>
 
-          <div className="mt-5">
-            <Link to="/" className="btn btn-primary">
-              Go to Home
-            </Link>
-          </div>
+          {!edit ? (
+            <Button
+              className="btn-leave"
+              onClick={leave}
+              style={{
+                backgroundColor: "#d4d8f0",
+                borderColor: "#121629",
+                color: "#232946",
+                borderRadius: "10px 10px 10px 10px",
+                fontSize: "24px",
+              }}
+              size="md"
+            >
+              <div>
+                <img
+                  src={leave_room}
+                  className="leave-white"
+                  width="38px"
+                  height="38px"
+                ></img>{" "}
+                LEAVE ROOM
+              </div>
+            </Button>
+          ) : (
+            <Button
+              className="btn-leave"
+              onClick={leave}
+              style={{
+                backgroundColor: "#4BB543",
+                borderColor: "#121629",
+                color: "white",
+                borderRadius: "10px 10px 10px 10px",
+                fontSize: "24px",
+              }}
+              size="md"
+            >
+              COMPLETE
+            </Button>
+          )}
         </Container>
       </div>
     </Fragment>
@@ -64,8 +87,7 @@ const Room = (props) => {
 
 const mapStateToProps = (state) => ({
   room: state.room,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getRoomByUserId, roomListUnload })(
-  Room
-);
+export default connect(mapStateToProps, { getRoomList, roomListUnload })(Room);

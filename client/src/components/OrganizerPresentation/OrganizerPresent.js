@@ -1,59 +1,64 @@
 import React, { useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import OrganizerPresentList from "./OrganizerPresentList";
-import {
-  getOrgAskByRoomId,
-  orgAskListUnload,
-} from "../../actions/orgAskActions";
+import { getOrgAskList, orgAskListUnload } from "../../actions/orgAskActions";
 import { getOrgRoomById, orgRoomUnload } from "../../actions/orgRoomActions";
 import { Container } from "reactstrap";
+import Loading from "../Loading/Loading";
+import io from "socket.io-client";
 
 const OrganizerPresent = ({
   getOrgRoomById,
   orgRoomUnload,
-  getOrgAskByRoomId,
+  getOrgAskList,
   orgAskListUnload,
-  orgRoom: { room },
-  orgAsk: { askList, loading },
+  orgRoom: { room, roomLoading },
+  orgAsk: { askList, askLoading },
   match,
 }) => {
   useEffect(() => {
-    getOrgRoomById(match.params.id);
+    getOrgRoomById(match.params.roomid);
     return () => {
       orgRoomUnload();
     };
-  }, [getOrgRoomById, match.params.id, orgRoomUnload]);
+  }, [getOrgRoomById, match.params.roomid, orgRoomUnload]);
 
   useEffect(() => {
-    getOrgAskByRoomId(match.params.id);
+    let socket = io.connect("http://localhost:5000");
+
+    socket.emit("room", match.params.roomid);
+
+    socket.on("organizerAsk", (data) => {
+      if (data.status === 200) {
+        getOrgAskList(match.params.roomid);
+      }
+    });
+
+    getOrgAskList(match.params.roomid);
+
     return () => {
       orgAskListUnload();
+      socket.disconnect();
     };
-  }, [getOrgAskByRoomId, match.params.id, orgAskListUnload]);
+  }, [getOrgAskList, match.params.roomid, orgAskListUnload]);
 
-  return loading ? (
-    <h1>Loading</h1>
+  return roomLoading || askLoading ? (
+    <Loading></Loading>
   ) : (
     <Fragment>
-      <div className="bg-pre">
+      <div className="fullscreen bg">
         <Container fluid>
-          <h1 className="org-h1 text-center">Ask Presentation</h1>
+          <h1 className="org-h1 text-center org-section">Ask Presentation</h1>
         </Container>
         <Container fluid>
           <h5 className="org-h5 text-center">
             ROOM: {room.roomName}
             <br />
-            ROOMID: {room._id}
+            PIN: {room.code}
           </h5>
 
           {<OrganizerPresentList askList={askList} />}
         </Container>
-        <div>
-          <Link to="/" className="btn btn-primary">
-            Go to Home
-          </Link>
-        </div>
       </div>
     </Fragment>
   );
@@ -66,7 +71,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getOrgRoomById,
-  getOrgAskByRoomId,
+  getOrgAskList,
   orgRoomUnload,
   orgAskListUnload,
 })(OrganizerPresent);

@@ -5,12 +5,14 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys')
 const authCheck = require('../../middleware/authCheck');
 const User = require('../../models/User')
+const storeRedirect = require('../../middleware/storeRedirect')
 
 // @route    Get api/auth/google
 // @desc     Authenticate user 
 // @access   Public
 router.get(
     '/google',
+    storeRedirect,
     passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
@@ -24,14 +26,15 @@ router.get(
                     id: req.user.id
                   }
             }
-            jwt.sign(payload, keys.jwtSecret, {expiresIn:'5 min'}, (err, token) => {
-                if(err){
+            jwt.sign(
+                payload,
+                keys.jwtSecret,
+                {expiresIn: 360000 },
+                (err, token) => {
                     if (err) throw err;
-                } else {
-                    // res.status(200).cookie('token', token, {httpOnly: true}).redirect("/")
-                    res.status(200).cookie('token', token).redirect("/")
-                }
-            });   
+                    // res.status(200).cookie('token', token).redirect(req.session.redirectTo)
+                    res.status(200).redirect(req.session.redirectTo+'?token='+token)
+                });   
         } catch (error) {
             console.error(err.message);
             res.status(500).send('Server error');

@@ -1,6 +1,9 @@
 import axios from 'axios';
+import apiUrl from '../utils/apiUrl' ;
+// import { setAlert } from './alertActions';
+import Swal from 'sweetalert2';
+
 import { 
-    ASK_REQUEST,
     GET_ASKLIST,
     GET_ASK,
     ADD_ASK,
@@ -10,46 +13,42 @@ import {
 } from './types';
 
 //Get all ask
-export const getAllAsk = () => async dispatch => {
-    try {
-        dispatch({type: ASK_REQUEST});
-        const res = await axios.get('https://ask-project.herokuapp.com/api/ask')
-        dispatch({
-            type: GET_ASKLIST,
-            payload: res.data
-        });
-    } catch (err) {
-        dispatch({
-            type: ASK_ERROR,
-            payload: err
-        });    
-    }
-};
+// export const getAllAsk = () => async dispatch => {
+//     try {
+//         const res = await axios.get('/api/ask')
+//         dispatch({
+//             type: GET_ASKLIST,
+//             payload: res.data
+//         });
+//     } catch (err) {
+//         dispatch({
+//             type: ASK_ERROR,
+//             payload: err
+//         });    
+//     }
+// };
 
 //Get ask by ask_id
-export const getAskById = askId => async dispatch => {
-    try {
-        dispatch({type: ASK_REQUEST});
-        const res = await axios.get(`https://ask-project.herokuapp.com/api/ask/${askId}`)
+// export const getAskById = askId => async dispatch => {
+//     try {
+//         const res = await axios.get(`/api/ask/${askId}`)
+//         dispatch({
+//             type: GET_ASK,
+//             payload: res.data
+//         });
+//     } catch (err) {
+//         dispatch({
+//             type: ASK_ERROR,
+//             payload: err
+//         });    
+//     }
+// };
 
-        dispatch({
-            type: GET_ASK,
-            payload: res.data
-        });
-    } catch (err) {
-        dispatch({
-            type: ASK_ERROR,
-            payload: err
-        });    
-    }
-};
-
-//Get ask by room_id and user_id
-export const getAskByRoomIdUserId = (roomId,userId) => async dispatch => {
+//Get user asklist
+export const getUserAskList = (roomId) => async dispatch => {
     try {
-        dispatch({type: ASK_REQUEST});
-        const res = await axios.get(`https://ask-project.herokuapp.com/api/ask/room/${roomId}/${userId}`)
-    
+        const res = await axios.get(`${apiUrl}/api/ask/user/room/${roomId}`)
+
         dispatch({
             type: GET_ASKLIST,
             payload: res.data
@@ -65,18 +64,36 @@ export const getAskByRoomIdUserId = (roomId,userId) => async dispatch => {
 // Add ask
 export const addAsk = formData => async dispatch => {
     try {
-        dispatch({type: ASK_REQUEST});
-        const res = await axios.post('https://ask-project.herokuapp.com/api/ask', formData);
+        const res = await axios.post(`${apiUrl}/api/ask`, formData);
 
         dispatch({
           type: ADD_ASK,
           payload: res.data
         });
+        
+        //test Sweetalert2
+        Swal.fire({
+            title:'Message Send!',
+            icon:'success'
+        })
+        
     } catch (err) {
+
+        const errorMessage = err.response.data.msg ;
+
+        if (errorMessage) {
+            // dispatch(setAlert(errorMessage, 'danger'));
+            Swal.fire({
+              title: `${errorMessage} !`,
+              icon:'error'
+            })
+          }
+
         dispatch({
             type: ASK_ERROR,
             payload: err
         });    
+
     }
 };
 

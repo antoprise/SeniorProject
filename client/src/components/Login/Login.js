@@ -3,8 +3,8 @@ import logo from '../../assets/logo.svg';
 import googlelogin from '../../assets/signin.svg';
 import { Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
-import apiUrl from '../../utils/apiUrl' ;
 import { Redirect } from 'react-router-dom';
+import apiUrl from '../../utils/apiUrl' ;
 
 const Login = (props) => {
     const {

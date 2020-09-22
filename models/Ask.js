@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-
+const mongoose = require("mongoose");
 
 const AskSchema = new mongoose.Schema({
     
@@ -20,6 +19,10 @@ const AskSchema = new mongoose.Schema({
         default: Date.now
     },
     anonymous:{
+        type: Boolean,
+        default: false
+    },
+    isAnswer:{
         type: Boolean,
         default: false
     }

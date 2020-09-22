@@ -1,6 +1,9 @@
 import axios from 'axios';
+import apiUrl from '../utils/apiUrl' ;
+// import { setAlert } from './alertActions';
+import Swal from 'sweetalert2'
+
 import { 
-  ROOM_REQUEST,
   GET_ROOMLIST,
   GET_ROOM,
   JOIN_ROOM,
@@ -11,27 +14,26 @@ import {
 } from './types';
 
 //Get all room
-export const getAllRoom = () => async (dispatch) => {
-  try {
-    dispatch({type: ROOM_REQUEST});
-    const res = await axios.get('https://ask-project.herokuapp.com/api/room');
-    dispatch({
-      type: GET_ROOMLIST,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: ROOM_ERROR,
-      payload: err
-    });    
-  }
-};
+// export const getAllRoom = () => async (dispatch) => {
+//   try {
+//     const res = await axios.get('/api/room');
+//     dispatch({
+//       type: GET_ROOMLIST,
+//       payload: res.data
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: ROOM_ERROR,
+//       payload: err
+//     });    
+//   }
+// };
 
 //Get room by room_id (User) 
 export const getRoomById = roomId => async (dispatch) => {
   try {
-    dispatch({type: ROOM_REQUEST});
-    const res = await axios.get(`https://ask-project.herokuapp.com/api/room/${roomId}`);
+    const res = await axios.get(`${apiUrl}/api/room/${roomId}`);
+    console.log('room',res)
     dispatch({
       type: GET_ROOM,
       payload: res.data
@@ -44,12 +46,10 @@ export const getRoomById = roomId => async (dispatch) => {
   }
 };
 
-//Get room by user_id(user)
-export const getRoomByUserId = userId => async (dispatch) => {
+//Get user roomlist
+export const getRoomList =()=> async (dispatch) => {
   try {
-    dispatch({type: ROOM_REQUEST});
-    const res = await axios.get(`https://ask-project.herokuapp.com/api/room/user/${userId}`);
-    console.log(res.data)
+    const res = await axios.get(`${apiUrl}/api/room/user/list`);
     dispatch({
       type: GET_ROOMLIST,
       payload: res.data,
@@ -63,33 +63,58 @@ export const getRoomByUserId = userId => async (dispatch) => {
 };
 
 //Join room
-export const joinRoom = (roomId,userId)=> async (dispatch) => {
+export const joinRoom = (roomCode)=> async (dispatch) => {
   try {
-    dispatch({type: ROOM_REQUEST});
-    const res = await axios.post(`https://ask-project.herokuapp.com/api/room/join/${roomId}`,userId);
+    const res = await axios.post(`${apiUrl}/api/room/join/${roomCode}`);
 
     dispatch({
       type: JOIN_ROOM,
       payload: res.data
     });
+
+    Swal.fire({
+      title:'Room Joined !',
+      icon:'success'
+    })
+
+    // dispatch(setAlert('Room Joined', 'success'));
+
   } catch (err) {
+    
+    const errorMessage = err.response.data.msg ;
+    
+    if (errorMessage) {
+      // dispatch(setAlert(errorMessage, 'danger'));
+      Swal.fire({
+        title: `${errorMessage} !`,
+        icon:'error'
+      })
+    }
+
     dispatch({
       type: ROOM_ERROR,
       payload: err
-    });    
+    });
+    
   }
 };
 
 //Leave room
-export const leaveRoom = (roomId,userId) => async (dispatch) => {
+export const leaveRoom = (roomId) => async (dispatch) => {
   try {
-    dispatch({type: ROOM_REQUEST});
-    await axios.delete(`https://ask-project.herokuapp.com/api/room/leave/${roomId}`,userId);
-
+    await axios.delete(`${apiUrl}/api/room/leave/${roomId}`);
+    
     dispatch({
       type: LEAVE_ROOM,
       payload: roomId
     });
+    
+    Swal.fire({
+      title:'Room left !',
+      icon:'success'
+    })
+    // dispatch(setAlert('Room left', 'success'));
+    
   } catch (err) {
     dispatch({
       type: ROOM_ERROR,

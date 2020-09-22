@@ -8,8 +8,7 @@ const FeedbackSchema = new mongoose.Schema({
     room:{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'room'
-    }
-    ,
+    },
     emoticon:{
         type: String,
         required: true
@@ -18,7 +17,7 @@ const FeedbackSchema = new mongoose.Schema({
         type: String
     },
     date:{
-        type: String,
+        type: Date,
         default: Date.now
     }
     

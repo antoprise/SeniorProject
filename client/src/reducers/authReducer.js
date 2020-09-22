@@ -1,45 +1,49 @@
-import Cookies from "js-cookie"
 import {
-    AUTH_REQUEST,
     USER_LOADED,
     TOKEN_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGOUT
   } from '../actions/types';
   
     const initialState = {
-      token: Cookies.get('token'),
+      token: localStorage.getItem('token'),
       isAuthenticated: null,
       user: null,
       error: {},
-      loading: true
+      authLoading: true
     };
   
   export default function(state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
-      case AUTH_REQUEST:
-        return {
-          ...state,
-          loading: true  
-        } ;
       case USER_LOADED:
         return {
           ...state,
           isAuthenticated: true,
           user: payload,
-          loading: false   
+          authLoading: false   
         } ;
         case TOKEN_LOADED:
         return {
           ...state,
+          isAuthenticated: true,
           token: payload,
-          loading: false   
+          authLoading: false   
         } ;
+      case LOGOUT:
+        return {
+          ...state,
+          token: null,
+          isAuthenticated: false,
+          user: null,
+          authLoading: false
+        };
       case AUTH_ERROR:
         return {
           ...state,
+          isAuthenticated: false,
           error: payload,
-          loading: false 
+          authLoading: false
         };
       default:
         return state;

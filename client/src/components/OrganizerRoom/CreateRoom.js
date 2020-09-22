@@ -5,13 +5,13 @@ import { Container ,Row ,Col ,Button } from "reactstrap";
 
 const CreateRoom = (props) => {
   const [roomName, setRoomName] = useState("");
-  const userId = "5e85403922192a21e87fbbaa";
   const {createRoom,toggle} = props ;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createRoom({ userId, roomName });
+    createRoom({roomName});
     setRoomName("");
+    toggle()
   };
 
   return (

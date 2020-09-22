@@ -8,17 +8,20 @@ body > #root {
   background: linear-gradient(300.81deg, #eeadb4 15.33%, #c1abdd 101.47%);
 } */
 .bg {
-  background: linear-gradient(300.81deg, #eeadb4 15.33%, #c1abdd 101.47%);
+  /*background: linear-gradient(300.81deg, #eeadb4 15.33%, #c1abdd 101.47%);*/
+  background: #232946;
 }
 
-.fullscreen{
+.fullscreen {
   min-height: 100vh;
 }
+
 h1 {
   font-family: Kanit;
   font-style: normal;
   font-weight: 700;
   font-size: 46px;
+  color: #fff;
 }
 
 h2 {
@@ -42,6 +45,7 @@ header {
   font-weight: 700;
   font-size: 46px;
   line-height: 54px;
+  color: #fff;
 }
 
 .org-h2 {
@@ -50,6 +54,7 @@ header {
   font-weight: 700;
   font-size: 38px;
   line-height: 46px;
+  color: #fff;
 }
 
 .org-h3 {
@@ -58,6 +63,7 @@ header {
   font-weight: 700;
   font-size: 30px;
   line-height: 38px;
+  color: #fff;
 }
 
 .org-h4 {
@@ -66,6 +72,7 @@ header {
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
+  color: black;
 }
 
 .org-h5 {
@@ -74,6 +81,7 @@ header {
   font-weight: 500;
   font-size: 20px;
   line-height: 28px;
+  color: #fff;
 }
 
 .org-p {
@@ -92,8 +100,25 @@ header {
   font-size: 16x;
   line-height: 24px;
 }
-/* -------------------- organizer Room -------------------- */
 
+/* -------------------- organizer Room -------------------- */
+.org-room {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 54px;
+  color: #fffffe;
+}
+
+.orgroom-p {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fffffe;
+}
 
 .orgroom-box {
   font-family: Kanit;
@@ -106,7 +131,18 @@ header {
   background: #e5e5e5;
   border-radius: 0 0 10 10px;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
+}
+.org-h6 {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .createroom-input {
@@ -122,12 +158,24 @@ header {
   border-style: solid;
   border-width: 5px;
 }
+.orgroom-row {
+  padding: 50px;
+  padding-right: initial;
+  text-align: center;
+  align-items: center;
+}
 
+.orgroom-section {
+  margin-top: 50px;
+}
 
 /* -------------------- organizer ASK -------------------- */
+.orgask-section {
+  margin-top: 50px;
+}
 
 .org-box {
-  background: #e5e5e5;
+  background: #fff;
   border-radius: 10px;
   margin-bottom: 80px;
 }
@@ -139,7 +187,7 @@ header {
 }
 
 .boxitem {
-  background: #ffffff;
+  background: #b8c1ec;
   border-radius: 10px;
   margin: 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 0.4rem;
@@ -156,6 +204,17 @@ header {
   background: #e5e5e5;
   border-radius: 10px;
 }
+
+.pre-box-answer {
+  min-height: 80px;
+  font-family: Kanit;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  background: #c21414;
+  border-radius: 10px;
+}
+
 .bg-pre {
   background: linear-gradient(300.81deg, #eeadb4 15.33%, #c1abdd 101.47%);
 }
@@ -166,13 +225,20 @@ header {
   background: linear-gradient(300.81deg, #f0a3ac 15.33%, #b493e0 101.47%);
 }*/
 
-.question-column {
+/*.question-column {
   background: #ffffff;
   height: 400px;
   overflow: auto;
   border-radius: 10px;
   margin-top: 10px;
 
+}*/
+
+.ask-box {
+  background: #fffffe;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #121629;
 }
 
 .topic h1 {
@@ -182,9 +248,8 @@ header {
   font-size: 28px;
   text-align: center;
   line-height: 32px;
-  color: #fff;
-  margin-top: 20px;
-
+  color: #fffffe;
+  padding-top: 20px;
 }
 
 .askRoomName {
@@ -193,16 +258,23 @@ header {
   font-size: 24px;
   line-height: 32px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .todayTime {
   font-family: Kanit;
   font-style: normal;
   text-align: center;
-
   font-size: 12px;
   line-height: 20px;
+  font-weight: 500;
+}
 
+/* -------------------- ASK HISTORY ------------------------- */
+.ask-boxlist {
+  height: 300px;
+  scrollbar-3dlight-color: rgb(60, 255, 0);
+  overflow: auto;
 }
 
 /* -------------------- ASK HISTORY ITEM -------------------- */
@@ -214,48 +286,46 @@ header {
   color: #777;
   text-align: center;
 }
+
 .textbox {
-  display:grid;
+  display: grid;
   grid-template-columns: 80%;
   justify-content: end;
   justify-items: end;
-  
 }
+
 .textbox .question-text {
   font-family: Kanit;
   font-style: normal;
-  font-weight: 300;
+  font-weight: normal;
   font-size: 14px;
   line-height: 22px;
   padding: 9px 14px;
-  background: #474444;
+  background: #b8c1ec;
   border-radius: 14px 14px 0px 14px;
-  color: #fff;
+  color: #232946;
+  margin-right: 20px;
 }
 
-
 /* -------------------- ASK FORM -------------------- */
-
 
 .askText {
   font-family: Kanit;
   font-weight: 300;
-  font-size: 18px;
-  background: #ffffff;
-  border: none;
+  font-size: 16px;
+  background: #fffffe;
+  border: 2px solid #121629;
   height: 56px;
   padding: 0 25px;
   border-radius: 5px;
   width: 100%;
-
-
 }
 
 .anonymous {
   font-family: Kanit;
   font-size: 14px;
-  font-weight: 300;
-
+  font-weight: 400;
+  color: #eebbc3;
 }
 
 .btnAdvance {
@@ -263,21 +333,22 @@ header {
   border: none;
   width: 120px;
   cursor: pointer;
-  background-color: rgb(75, 35, 128);
+  background-color: #eebbc3;
   height: 46px;
   color: #ffffff;
-}
-.btnAdvance:hover {
-  background: rgb(75, 35, 128);
+  border: 2px solid #121629;
 }
 
+.btnAdvance:hover {
+  background: #b8c1ec;
+}
 /*------------------------- Room ---------------------*/
 .head-room {
   background: linear-gradient(300.81deg, #eeadb4 15.33%, #c1abdd 101.47%);
   border-radius: 0px 0px 20px 20px;
   min-width: auto;
-  position: fixed;
 }
+
 .room-box {
   width: 300px;
   height: 100px;
@@ -286,14 +357,27 @@ header {
   font-style: normal;
   text-align: center;
   align-items: center;
-
-  box-shadow: #e493c980 0px 1px 0.4rem;
+  /*box-shadow: #e493c980 0px 1px 0.4rem;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.room-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn-join {
   width: 300px;
   height: 100px;
+  font-family: Kanit;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+}
 
+.btn-leave {
+  width: 300px;
+  height: 100px;
   font-family: Kanit;
   font-style: normal;
   text-align: center;
@@ -309,6 +393,7 @@ header {
   font-family: Kanit;
   font-style: normal;
 }
+
 .room-h3 {
   text-align: center;
   font-size: 24px;
@@ -317,50 +402,527 @@ header {
   font-family: Kanit;
   font-style: normal;
 }
+
 .room-bg {
   background-color: #fafafa;
   min-width: 300px;
-
-
+}
+.leave-img {
+  padding-left: 20px;
+}
+.leave-white {
+  padding-left: 15px;
 }
 
-.btnAdvance:hover {
-  background: rgb(138, 66, 231);
+.plus-img {
+  padding-right: 10px;
+}
+
+.warn-leave {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 38px;
+  margin-top: 20px;
 }
 
 /* -------------------- Login (Home) -------------------- */
+.login-section {
+  position: relative;
+}
 
 .logo {
-  margin-top: 180px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
 }
 
 .button {
-  margin-top: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .footer {
   font-family: Kanit;
   font-size: 14px;
   font-weight: 400;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
-
 }
-
 
 /*------------------ Login (Organization) ---------------*/
 
 .howto {
   font-family: Kanit;
   margin-top: 60px;
-  
 }
 
 /*------------------ NavBar ---------------*/
 
-.nav-item{
+.nav-item {
   font-family: Kanit;
-  font-size: 1em;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  padding: 10px;
+  display: flex;
+}
+.nav-section {
+  background: linear-gradient(87.98deg, #88b1ef 12.77%, #bdaff1 82%);
+}
+
+/*------------------- NavBar Organization --------------*/
+.navorg-section {
+  background: linear-gradient(87.98deg, #88b1ef 12.77%, #bdaff1 82%);
+}
+
+.navorg-item {
+  font-family: Kanit;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  padding: 1px;
+}
+
+.nav-user {
+  font-family: Kanit;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  color: red;
+}
+
+/*------------------ Not found --------------- */
+
+/*------------------ Loading -----------------*/
+
+.loader {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 20px;
+  width: 100%;
+  height: 10px;
+  text-align: center;
+}
+
+.loader span {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  display: inline-block;
+  margin-left: 20px;
+  border-radius: 50%;
+  animation: animate 2s linear infinite;
+  opacity: 0;
+}
+
+.loader span:nth-child(1) {
+  animation-delay: 0.8s;
+  background: #00c2ff;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 0.6s;
+  background: #ffe837;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 0.4s;
+  background: #ff1b78;
+}
+
+.loader span:nth-child(4) {
+  animation-delay: 0.2s;
+  background: #ba68c8;
+}
+
+.loader span:nth-child(5) {
+  animation-delay: 0s;
+  background: #f57c00;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  25% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+
+  90% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+}
+
+.smoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 10px;
+  padding-bottom: 60px;
+  transform: translate(-50%, -50%);
+}
+
+.smoke span {
+  position: relative;
+  color: #474444;
+  font-family: kanit;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  animation: animate 3s linear infinite;
+}
+/*.smoke span:nth-child(1){
+  animation-delay: 0s;
+}
+.smoke span:nth-child(2){
+  animation-delay: 0.1s;
+}
+.smoke span:nth-child(3){
+  animation-delay: 0.2s;
+}
+.smoke span:nth-child(4){
+  animation-delay: 0.3s;
+}
+.smoke span:nth-child(5){
+  animation-delay: 0.4s;
+}
+.smoke span:nth-child(6){
+  animation-delay: 0.5s;
+}
+.smoke span:nth-child(7){
+  animation-delay: 0.6s;
+}*/
+
+/*@keyframes animate2{
+  0%{
+    filter: blur(0);
+  }
+  40%{
+    filter: blur(20px);
+  }
+  80%{
+    filter: blur(0px);
+  }
+  100%{
+    filter: blur(0px);
+  }
+
+}*/
+
+/* --------------------------- Organizer Menu --------------------*/
+.orgmenu-box {
+  font-family: Kanit;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  height: 250px;
+  width: 300px;
+  box-shadow: rgba(109, 99, 99, 0.502) 0px 1px 0.4rem;
+  border-radius: 0 0 10 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orgmenu-text {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.orgmenu-room {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px;
+  color: #fffffe;
+}
+
+.orgmenu-row {
+  padding: 70px 0;
+  text-align: center;
+}
+
+.orgmenu-present {
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+/*-------------------------------- Organizer Feedback ---------------------------------*/
+.org-section {
+  padding-top: 50px;
+}
+.feedback-org-item-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
+.feedback-chart-img {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+/*-------------------------------- Room Menu ---------------------------------*/
+.menu-row {
+  padding: 10px;
+  text-align: center;
+}
+.room-box-ask {
+  width: 300px;
+  height: 100px;
+  font-family: Kanit;
+  font-size: 28px;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  border-width: 2px;
+  margin-top: 30px;
+}
+
+.room-box-question {
+  width: 300px;
+  height: 100px;
+  font-family: Kanit;
+  font-size: 28px;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  margin-top: 30px;
+  border-width: 2px;
+}
+
+.room-box-feedback {
+  width: 300px;
+  height: 100px;
+  font-family: Kanit;
+  font-size: 28px;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  margin-top: 30px;
+  border-width: 2px;
+}
+
+.room-img {
+  margin-right: 30px;
+}
+
+/*--------------------- Feedback Form --------------------*/
+.feedbackText {
+  font-family: Kanit;
+  font-weight: normal;
+  font-size: 16px;
+  height: 56px;
+  width: 100%;
+}
+
+.suggestion {
+  border: none;
+  height: 120px;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  color: #121629;
+  border: 2px solid #121629;
+  background-color: #d4d8f0;
+}
+
+.submit-feedback {
+  width: 193px;
+  height: 48px;
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: bold;
+  background-color: #eebbc3;
+  border-radius: 10px;
+}
+textarea[name="text"] {
+  resize: none;
+}
+
+/*------------------------- Feedback -----------------------*/
+
+.feedback-section {
+  text-align: center;
+}
+
+.feedback-box {
+  height: 450px;
+  border-radius: 10px;
+  border: solid;
+  border: 2px solid #121629;
+  background: #fffffe;
+}
+
+.feedback-img {
+  width: 36px;
+  height: 36px;
+  margin-top: 20px;
+}
+
+.feedback-topic {
+  font-family: Kanit;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.feedback-point {
+  font-family: Kanit;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+}
+
+.radio-feedback {
+  text-align: center;
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+.feedback-point {
+  font-family: Kanit;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+}
+
+.radio-feedback {
+  text-align: center;
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+/*------------------------- Question -----------------------*/
+.question-box {
+  background: #ffffff;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  margin-bottom: auto;
+  height: auto;
+  max-height: 520px;
+}
+
+.question-boxlist {
+  height: auto;
+  scrollbar-3dlight-color: rgb(60, 255, 0);
+  overflow: auto;
+  border-color: #474444;
+}
+
+.question-boxitem {
+  width: 300px;
+  min-height: 100px;
+  font-family: Kanit;
+  font-size: 28px;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+}
+/*-------------------------------- Answer Form -----------------------------------*/
+.answerText {
+  font-family: Kanit;
+  font-weight: normal;
+  font-size: 16px;
+  height: 56px;
+  width: 100%;
+}
+.answer {
+  border: none;
+  height: 120px;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  color: #121629;
+  border: 2px solid #121629;
+  background-color: #d4d8f0;
+}
+
+.answer-box {
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #121629;
+  background: #ffffff;
+  overflow: auto;
+}
+
+.answer-room {
+  font-family: Kanit;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.question-detail {
+  font-family: Kanit;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  padding: 5px;
+  color: #232946;
+}
+
+.submit-answer {
+  width: 193px;
+  height: 48px;
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.question-card {
+  height: auto;
+  width: auto;
+  border-radius: 10px;
+  background: #e5e5e5;
+  margin-top: 15px;
 }

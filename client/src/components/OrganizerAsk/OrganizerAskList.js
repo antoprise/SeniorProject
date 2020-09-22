@@ -1,6 +1,7 @@
 import React  from 'react' ;
 import OrganizerAskItem from './OrganizerAskItem' ;
 
+
 const OrganizerAskList = ({askList}) =>{
     return(
         <div className='org-box'>

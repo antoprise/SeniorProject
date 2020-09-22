@@ -1,64 +1,90 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
-  getRoomByOwnerId,
+  getOrgRoomList,
   orgRoomListUnload,
 } from "../../actions/orgRoomActions";
 import OrganizerRoomList from "./OrganizerRoomList";
 import { Container, Row, Button } from "reactstrap";
+import Loading from "../Loading/Loading";
+
 const OrganizerRoom = (props) => {
-  //mockup user
-  const user = {
-    _id: "5e85403922192a21e87fbbaa",
-    email: "ballpwd5@gmail.com",
-    userName: "ballpwd5",
-  };
+  const [edit, setEdit] = useState(false);
+  const manage = () => setEdit(!edit);
 
   const {
-    getRoomByOwnerId,
+    getOrgRoomList,
     orgRoomListUnload,
-    orgRoom: { roomList, loading },
+    orgRoom: { roomList, roomLoading },
+    auth: { user },
   } = props;
 
   useEffect(() => {
-    getRoomByOwnerId(user._id);
+    getOrgRoomList();
     return () => {
       orgRoomListUnload();
     };
-  }, [getRoomByOwnerId, user._id, orgRoomListUnload]);
+  }, [getOrgRoomList, orgRoomListUnload]);
 
-  console.log(roomList);
-
-  return loading ? (
-    <h1>Loading</h1>
+  return roomLoading ? (
+    <Loading></Loading>
   ) : (
     <Fragment>
-        <Container fluid>
-          <h1 className="org-h1 text-center">Hi "{user.userName}"</h1>
-          <p className="text-danger text-center">
-            {" "}
-            Mockup Organizer Room for User ballpwd5{" "}
-          </p>
+      <div className="fullscreen bg">
+        <Container>
+          <div className="pt-5">
+            <h1 className="text-center org-room">Hi "{user.userName}"</h1>
+          </div>
         </Container>
         <Container>
+          <div className="pt-2 px-4">
+            <h3 className="text-center org-room">Organizer ROOM</h3>
+            <hr />
+          </div>
           <Row>
-            <div>{<OrganizerRoomList roomList={roomList} />}</div>
+            <div>{<OrganizerRoomList roomList={roomList} edit={edit} />}</div>
           </Row>
-          <Row className="justify-content-center mt-5">
-            <Button to="/" className="btn btn-dark org-btn">
+          <Row className="justify-content-center mt-2">
+            {!edit ? (
+              <Button
+                onClick={manage}
+                className="org-btn"
+                style={{
+                  backgroundColor: "#FF8BA7",
+                  borderColor: "#121629",
+                  borderWidth: "2px",
+                  color: "#232946",
+                }}
+              >
                 MANAGE ROOM
-            </Button>
+              </Button>
+            ) : (
+              <Button
+                onClick={manage}
+                className="org-btn"
+                style={{
+                  backgroundColor: "#232946",
+                  borderColor: "#FF8BA7",
+                  borderWidth: "2px",
+                  color: "#FF8BA7",
+                }}
+              >
+                COMPLETE
+              </Button>
+            )}
           </Row>
         </Container>
+      </div>
     </Fragment>
   );
 };
 
 const mapStateToProps = (state) => ({
   orgRoom: state.orgRoom,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {
-  getRoomByOwnerId,
+  getOrgRoomList,
   orgRoomListUnload,
 })(OrganizerRoom);
