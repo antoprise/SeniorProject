@@ -31,7 +31,7 @@ const LoginOrg = (props) => {
                 <Button className ='howto' color="dark" size="lg"  style={{width:'226px' , height:'55px'}} >How to</Button>
                 </Row>
                 <Row className='justify-content-center align-items-end footer'>
-                        <p>Swap to user <a href='/room'>ask.com</a></p>
+                        <p>Change to user login <a href='/room'> User</a></p>
                 </Row>
             </Container>
             </div>

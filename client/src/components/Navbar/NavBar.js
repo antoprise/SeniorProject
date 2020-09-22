@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/logo.svg';
+import { Link } from "react-router-dom";
 import {logout} from "../../actions/authActions" ;
 import {
   Collapse,
@@ -35,10 +36,10 @@ const NavBar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/room" className='nav-item'>ROOM</NavLink>
+              <Link to={"/room"} className='nav-item'> Room  </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/organizer/room" className='nav-item'>ORGANIZER ROOM</NavLink>
+              <Link to={"/organizer/room"} className='nav-item'>ORGANIZER ROOM</Link>
             </NavItem>
             </Nav>
             {user ? (

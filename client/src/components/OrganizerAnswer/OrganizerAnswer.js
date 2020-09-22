@@ -13,6 +13,7 @@ import OrganizerAnswerList from "./OrganizerAnswerList";
 import OrganizerAnswerAnalyze from "./OrganizerAnswerAnalyze";
 import Loading from "../Loading/Loading";
 import { Container, Row, Col, Button, Card } from "reactstrap";
+import apiUrl from '../../utils/apiUrl' ;
 import io from "socket.io-client";
 
 const OrganizerAnswer = (props) => {
@@ -28,7 +29,7 @@ const OrganizerAnswer = (props) => {
     orgQuestion: { question, questionLoading },
     match,
   } = props;
-
+  
   useEffect(() => {
     getOrgRoomById(match.params.roomid);
     return () => {
@@ -44,7 +45,7 @@ const OrganizerAnswer = (props) => {
   }, [getOrgQuestionById, match.params.questionid, orgQuestionUnload]);
 
   useEffect(() => {
-    let socket = io.connect("http://localhost:5000");
+    let socket = io.connect(apiUrl);
 
     socket.emit("room", match.params.roomid);
 

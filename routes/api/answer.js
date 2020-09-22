@@ -31,7 +31,7 @@ router.post("/", auth, async (req, res) => {
     });
 
     const answer = await newAnswer.save();
-    req.app.io.sockets.in(roomId).emit("Answer", { status: 200 });
+    req.app.io.sockets.in(roomId).emit("organizerAnswer", { status: 200 });
     res.json(answer);
   } catch (err) {
     console.error(err.message);

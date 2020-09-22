@@ -448,6 +448,7 @@ header {
 
 .footer {
   font-family: Kanit;
+  color: white;
   font-size: 14px;
   font-weight: 400;
   position: fixed;
@@ -470,9 +471,15 @@ header {
   font-size: 15px;
   font-style: normal;
   font-weight: normal;
-  padding: 10px;
-  display: flex;
+  padding: 8px;
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
 }
+.nav-item:hover {
+  text-decoration: none;
+  color: black
+}
+
 .nav-section {
   background: linear-gradient(87.98deg, #88b1ef 12.77%, #bdaff1 82%);
 }

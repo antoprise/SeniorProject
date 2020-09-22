@@ -9,6 +9,7 @@ import OrganizerFeedbackList from "./OrganizerFeedbackList";
 import OrganizerFeedbackAnalyze from "./OrganizerFeedbackAnalyze";
 import Loading from "../Loading/Loading";
 import { Container, Row, Col, Button } from "reactstrap";
+import apiUrl from '../../utils/apiUrl' 
 //socket
 import io from "socket.io-client";
 //Export
@@ -33,7 +34,7 @@ const OrganizerFeedback = (props) => {
   }, [getOrgRoomById, match.params.roomid, orgRoomUnload]);
 
   useEffect(() => {
-    let socket = io.connect("http://localhost:5000");
+    let socket = io.connect(apiUrl);
 
     socket.emit("room", match.params.roomid);
 

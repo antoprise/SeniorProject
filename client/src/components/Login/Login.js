@@ -27,7 +27,7 @@ const Login = (props) => {
                     </Row>
 
                     <Row className='justify-content-center align-items-end footer'>
-                        <p>Create your own room for <a href='/organizer/room'>FREE organization.com</a></p>
+                        <p>Create your own room for FREE<a href='/organizer/room'> Organizer</a></p>
                     </Row>
                 </Container>
             </div>

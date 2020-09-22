@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Row, Col } from 'reactstrap';
-
 import smile from '../../assets/4pts.svg';
 import normal from '../../assets/3pts.svg';
 import confuse from '../../assets/2pts.svg';
@@ -80,7 +79,8 @@ const OrganizerFeedbackChart = (props) => {
                 },
                 ticks: {
                     fontSize: 20,
-                    fontStyle: 'bold'
+                    fontStyle: 'bold',
+                    fontColor: '#ffffff'
                 }
             }],
             yAxes: [{
@@ -101,7 +101,7 @@ const OrganizerFeedbackChart = (props) => {
                 display: true,
                 anchor: 'end',
                 align: 'end',
-                color: 'black',
+                color: 'white',
                 font: {
                     size: 20,
                     weight: 'bold'

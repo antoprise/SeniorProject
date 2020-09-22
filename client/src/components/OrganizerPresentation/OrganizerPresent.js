@@ -5,6 +5,7 @@ import { getOrgAskList, orgAskListUnload } from "../../actions/orgAskActions";
 import { getOrgRoomById, orgRoomUnload } from "../../actions/orgRoomActions";
 import { Container } from "reactstrap";
 import Loading from "../Loading/Loading";
+import apiUrl from '../../utils/apiUrl' 
 import io from "socket.io-client";
 
 const OrganizerPresent = ({
@@ -24,7 +25,7 @@ const OrganizerPresent = ({
   }, [getOrgRoomById, match.params.roomid, orgRoomUnload]);
 
   useEffect(() => {
-    let socket = io.connect("http://localhost:5000");
+    let socket = io.connect(apiUrl);
 
     socket.emit("room", match.params.roomid);
 
